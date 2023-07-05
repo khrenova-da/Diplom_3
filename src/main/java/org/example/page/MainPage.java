@@ -17,9 +17,10 @@ public class MainPage extends BasePage {
     public static final By SAUCE_BUTTON = By.xpath("//main/section[1]/div[1]/div[2]/span[contains(text(), 'Соусы')]");
     public static final By BUN_BUTTON = By.xpath("//main/section[1]/div[1]/div[1]/span[contains(text(), 'Булки')]");
     public static final By FILLING_BUTTON = By.xpath("//main/section[1]/div[1]/div[3]/span[contains(text(), 'Начинки')]");
-    public static final By SAUCE_LABEL = By.xpath("//main/section[1]/div[2]/h2[2]");
-    public static final By BUN_LABEL = By.xpath("//main/section[1]/div[2]/h2[1]");
-    public static final By FILLING_LABEL = By.xpath("//main/section[1]/div[2]/h2[3]");
+    public static final By BUN_ACTIVE_TAB = By.xpath(".//section[1]/div[1]/div[1][@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']");
+    public static final By SAUCE_ACTIVE_TAB = By.xpath(".//section[1]/div[1]/div[2][@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']");
+    public static final By FILLINGS_ACTIVE_TAB = By.xpath(".//section[1]/div[1]/div[3][@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']");
+
 
 
     public MainPage(WebDriver driver) {
@@ -70,16 +71,16 @@ public class MainPage extends BasePage {
         bunButton.click();
     }
 
-    public WebElement getSauceLabel() {
-        return driver.findElement(SAUCE_LABEL);
+    public boolean isSauceTabActive() {
+        return driver.findElement(SAUCE_ACTIVE_TAB).isDisplayed();
     }
 
-    public WebElement getFillingLabel() {
-        return driver.findElement(FILLING_LABEL);
+    public boolean isFillingTabActive() {
+        return driver.findElement(FILLINGS_ACTIVE_TAB).isDisplayed();
     }
 
-    public WebElement getBunLabel() {
-        return driver.findElement(BUN_LABEL);
+    public boolean isBunTabActive() {
+        return driver.findElement(BUN_ACTIVE_TAB).isDisplayed();
     }
 
 }

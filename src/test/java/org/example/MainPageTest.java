@@ -5,6 +5,7 @@ import org.example.page.MainPage;
 import org.junit.Assert;
 import org.junit.Test;
 
+
 public class MainPageTest extends BaseTest {
 
     @Test
@@ -13,9 +14,9 @@ public class MainPageTest extends BaseTest {
         MainPage mainPage = new MainPage(getDriver());
         mainPage.open();
         mainPage.clickSauceButton();
-        String sauceElementText = mainPage.getSauceLabel().getText();
-        Assert.assertEquals("Соусы", sauceElementText);
+        Assert.assertTrue(mainPage.isSauceTabActive());
     }
+
 
     @Test
     @DisplayName("Go to filling tab test")
@@ -23,8 +24,7 @@ public class MainPageTest extends BaseTest {
         MainPage mainPage = new MainPage(getDriver());
         mainPage.open();
         mainPage.clickFillingButton();
-        String sauceElementText = mainPage.getFillingLabel().getText();
-        Assert.assertEquals("Начинки", sauceElementText);
+        Assert.assertTrue(mainPage.isFillingTabActive());
     }
 
     @Test
@@ -34,8 +34,7 @@ public class MainPageTest extends BaseTest {
         mainPage.open();
         mainPage.clickFillingButton();
         mainPage.clickBunButton();
-        String sauceElementText = mainPage.getBunLabel().getText();
-        Assert.assertEquals("Булки", sauceElementText);
+        Assert.assertTrue(mainPage.isBunTabActive());
     }
 
 }
