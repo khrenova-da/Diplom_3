@@ -2,6 +2,7 @@ package org.example;
 
 import io.qameta.allure.junit4.DisplayName;
 import org.example.dto.CreateUserRequest;
+import org.example.dto.LoginUserRequest;
 import org.example.page.LoginPage;
 import org.example.page.MainPage;
 import org.example.page.RegisterPage;
@@ -24,6 +25,8 @@ public class RegisterPageTest extends BaseTest {
         registerPage.setCredentialsToRegisterForm(randomAccountWithValidCredentials);
         registerPage.clickRegisterButton();
         String loginPageLabel = loginPage.getLoginPageLabel().getText();
+        LoginUserRequest loginUserRequest = LoginUserRequest.from(randomAccountWithValidCredentials);
+        accessToken = userClient.login(loginUserRequest).extract().jsonPath().get("accessToken");
         Assert.assertEquals("Вход", loginPageLabel);
     }
 
@@ -40,6 +43,8 @@ public class RegisterPageTest extends BaseTest {
         registerPage.setCredentialsToRegisterForm(randomAccountWithValidCredentials);
         registerPage.clickRegisterButton();
         String invalidCredentialsElementText = registerPage.getInvalidCredentialsElement().getText();
+        LoginUserRequest loginUserRequest = LoginUserRequest.from(randomAccountWithValidCredentials);
+        accessToken = userClient.login(loginUserRequest).extract().jsonPath().get("accessToken");
         Assert.assertEquals("Некорректный пароль", invalidCredentialsElementText);
     }
 }
